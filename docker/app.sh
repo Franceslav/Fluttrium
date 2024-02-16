@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while !</dev/tcp/db/5432;
+while !</dev/tcp/db/5431;
 do sleep 1;
 done;
 alembic upgrade head
