@@ -10,8 +10,7 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-RUN chmod a+x docker/*.sh
+RUN chmod a+x docker/*.sh docker/app.sh  # Убедитесь, что скрипт app.sh исполняемый
 
-RUN alembic upgrade head
-
-CMD gunicorn main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000
+# Используйте скрипт app.sh в качестве точки входа или команды
+CMD ["./docker/app.sh"]
