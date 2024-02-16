@@ -14,7 +14,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Установка netcat для использования в app.sh
-RUN apt-get update && apt-get install -y netcat && apt-get clean
+RUN apt-get update && apt-get install -y netcat-openbsd && apt-get clean
 
 # Установка прав на исполнение для скриптов
 RUN chmod a+x docker/*.sh
