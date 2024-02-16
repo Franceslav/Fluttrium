@@ -1,16 +1,24 @@
 FROM python:3.11
 
+# Создание директории приложения
 RUN mkdir /fastapi_app
 
+# Установка рабочей директории
 WORKDIR /fastapi_app
 
+# Копирование файла requirements и установка зависимостей
 COPY requirements.txt .
-
 RUN pip install -r requirements.txt
 
+# Копирование всего приложения в контейнер
 COPY . .
 
-RUN chmod a+x docker/*.sh docker/app.sh  # Убедитесь, что скрипт app.sh исполняемый
+# Установка netcat для использования в app.sh
+RUN apt-get update && apt-get install -y netcat && apt-get clean
 
-# Используйте скрипт app.sh в качестве точки входа или команды
+# Установка прав на исполнение для скриптов
+RUN chmod a+x docker/*.sh
+
+# Запуск скрипта app.sh при старте контейнера
 CMD ["./docker/app.sh"]
+
