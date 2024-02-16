@@ -2,7 +2,7 @@
 FROM python:3.11
 
 # Установка netcat для использования в app.sh
-RUN apt-get update && apt-get install -y netcat && apt-get clean
+RUN apt-get update && apt-get install -y netcat-openbsd && apt-get clean
 
 # Создание директории приложения
 RUN mkdir /fastapi_app
