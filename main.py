@@ -13,6 +13,19 @@ from auth.auth import auth_backend
 from auth.database import User
 from auth.manager import get_user_manager
 from auth.schemas import UserRead, UserCreate
+from fastapi.middleware.cors import CORSMiddleware
+
+origins = [
+    "*"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app = FastAPI(
     title="Fluttrium"
