@@ -2,6 +2,7 @@ from datetime import datetime
 from enum import Enum
 from typing import List, Optional, Union
 
+import app
 from fastapi_users import fastapi_users, FastAPIUsers
 from pydantic import BaseModel, Field
 
@@ -15,6 +16,10 @@ from auth.manager import get_user_manager
 from auth.schemas import UserRead, UserCreate
 from fastapi.middleware.cors import CORSMiddleware
 
+app = FastAPI(
+    title="Fluttrium"
+)
+
 origins = [
     "*"
 ]
@@ -25,10 +30,6 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-)
-
-app = FastAPI(
-    title="Fluttrium"
 )
 
 fastapi_users = FastAPIUsers[User, int](
