@@ -17,5 +17,5 @@ class UserRead(schemas.BaseUser[int]):
 class UserCreate(schemas.BaseUserCreate):
     email: str
     password: str
-
+    username: Optional[str]
 
