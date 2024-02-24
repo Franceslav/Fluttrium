@@ -48,3 +48,4 @@ app.include_router(
 )
 
 current_user = fastapi_users.current_user()
+
