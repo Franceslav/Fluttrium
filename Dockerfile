@@ -8,10 +8,14 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-RUN pip install --upgrade bcrypt
+# Установка netcat для использования в app.sh
+RUN apt-get update && \
+    apt-get install -y netcat-openbsd && \
+    apt-get clean
 
 COPY . .
 
 RUN chmod a+x docker/*.sh
 
-#CMD ["gunicorn", "main:app", "--workers", "1", "--worker-class", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]
+# Здесь используется скрипт app.sh в качестве точки входа
+CMD ["./docker/app.sh"]
