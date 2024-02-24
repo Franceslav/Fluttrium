@@ -25,13 +25,13 @@ fastapi_users = FastAPIUsers[User, int](
 
 app.include_router(
     fastapi_users.get_auth_router(auth_backend),
-    prefix="/sign in",
+    prefix="",
     tags=["auth"],
 )
 
 app.include_router(
     fastapi_users.get_register_router(UserRead, UserCreate),
-    prefix="/sign up",
+    prefix="",
     tags=["auth"],
 )
 
