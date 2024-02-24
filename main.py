@@ -2,7 +2,6 @@ from datetime import datetime
 from enum import Enum
 from typing import List, Optional, Union
 
-import app
 from fastapi_users import fastapi_users, FastAPIUsers
 from pydantic import BaseModel, Field
 
@@ -16,13 +15,13 @@ from auth.manager import get_user_manager
 from auth.schemas import UserRead, UserCreate
 from fastapi.middleware.cors import CORSMiddleware
 
-origins = [
-    "*"
-]
-
 app = FastAPI(
     title="Fluttrium"
 )
+
+origins = [
+    "*"
+]
 
 app.add_middleware(
     CORSMiddleware,
@@ -31,7 +30,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 fastapi_users = FastAPIUsers[User, int](
     get_user_manager,
     [auth_backend],
@@ -54,6 +52,7 @@ current_user = fastapi_users.current_user()
 @app.get("/protected-route")
 def protected_route(user: User = Depends(current_user)):
     return f"Hello, {user.username}"
+
 
 @app.get("/unprotected-route")
 def unprotected_route():
