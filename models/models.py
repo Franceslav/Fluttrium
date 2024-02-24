@@ -17,7 +17,7 @@ user = Table(
     metadata,
     Column("id", Integer, primary_key=True),
     Column("email", String, nullable=False),
-    Column("username", String, nullable=False),
+    Column("username", String, nullable=True),
     Column("registered_at", TIMESTAMP, default=datetime.utcnow),
     Column("role_id", Integer, ForeignKey(role.c.id)),
     Column("hashed_password", String, nullable=False),
