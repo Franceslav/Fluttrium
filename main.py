@@ -16,13 +16,13 @@ from auth.manager import get_user_manager
 from auth.schemas import UserRead, UserCreate
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(
-    title="Fluttrium"
-)
-
 origins = [
     "*"
 ]
+
+app = FastAPI(
+    title="Fluttrium"
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -54,7 +54,6 @@ current_user = fastapi_users.current_user()
 @app.get("/protected-route")
 def protected_route(user: User = Depends(current_user)):
     return f"Hello, {user.username}"
-
 
 @app.get("/unprotected-route")
 def unprotected_route():
